@@ -1,16 +1,25 @@
 import os
-from PIL import image
+from PIL import Image
 
 
 
-cwd = os.cwd()
-
+cwd = os.getcwd()
 obs = 0
 
-for r, d, f in os.walk(os.path.join(cwd, images)):
-    for r, d, f in os.walk(os.path.join(cwd, images)):
-        image = Image.open(file_path).convert("LA")
-        image = image.resize((200, 200), Image.ANTIALIAS)
-        image.save(os.path.join(cwd, "processed_images", "building_folder", obs+".jpg")
+images_path = "images"
+process_images_dir = "processed_images"
+os.mkdir(os.path.join(cwd, process_images_dir))
+image_name="index "
+obs=0
 
-        obs+=1
+for d in os.listdir(os.path.join(cwd, images_path)):
+    os.mkdir(os.path.join(cwd, process_images_dir, d))
+    for image_path in os.listdir(os.path.join(cwd, images_path, d)):
+        try:
+            image = Image.open(os.path.join(cwd, images_path, d, image_path))#.convert("LA")
+            image = image.resize((200, 200), Image.ANTIALIAS)
+            image.save(os.path.join(cwd, process_images_dir, d, image_name+str(obs)+".jpg"))
+
+            obs+=1
+        except (OSError, AttributeError) as e:
+            pass

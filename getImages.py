@@ -21,7 +21,7 @@ def downloadimages(query):
 
 	arguments = {"keywords": query,
 				"format": "jpg",
-				"limit":100,
+				"limit":20,
 				"print_urls":True,
 				"size": "medium",
                 "output_directory": cwd + "/images",
@@ -46,5 +46,5 @@ def downloadimages(query):
 			pass
 
 if __name__ == "__main__":
-    for query in serach_queries:
+    for query in search_queries:
         downloadimages(query)
