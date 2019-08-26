@@ -2,6 +2,11 @@ import os
 from google_images_download import google_images_download
 
 cwd = os.getcwd()
+
+output_directory = cwd + "/images"
+    
+output_directory = output_directory.replace('\\','/')
+
 response = google_images_download.googleimagesdownload()
 
 
@@ -18,13 +23,16 @@ search_queries = [
 ]
 
 def downloadimages(query):
+    
 
+    
+    
 	arguments = {"keywords": query,
 				"format": "jpg",
 				"limit":20,
 				"print_urls":True,
 				"size": "medium",
-                "output_directory": cwd + "/images",
+                "output_directory": output_directory,
 				"aspect_ratio": "panoramic"}
 	try:
 		response.download(arguments)
